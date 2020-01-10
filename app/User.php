@@ -100,6 +100,10 @@ class User extends Authenticatable
             $surcharge = 0;
         }
 
+        if( $surcharge == null){
+            $surcharge = 0;
+        }
+
         return $surcharge;
     }
 }

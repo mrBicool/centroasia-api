@@ -34,7 +34,8 @@ class LoginController extends Controller
     		],200);
     	}
 
-    	//if(!Hash::check($request->password,$user->password)){
+	
+    	//if(!Hash::check($request->password,$user->password)){ 
     	if($request->password!=$user->password){
     		return response()->json([
     			'success'		=> 		false,

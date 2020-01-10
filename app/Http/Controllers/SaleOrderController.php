@@ -61,7 +61,16 @@ class SaleOrderController extends Controller
         $clarion    = new Clarion;
         $clarion    = $clarion->getCurrentDate($now);
 
-    	//save to SaleOrder
+        //save to SaleOrder
+        $newid = SaleOrder::orderBy('ORDNUM', 'desc')->first();
+
+        if( is_null($newid)){
+            $newid = 1;
+        }else{
+            //dd($newid , ($newid->order_number + 1) );
+            $newid = $newid->order_number + 1;
+        }
+
     	$so = new SaleOrder;
     	$so->reference_date = $clarion;
     	$so->account_code 	= $user->account_code;
@@ -75,8 +84,8 @@ class SaleOrderController extends Controller
     	$so->created_at     = $now;
         $so->status         = '';
         $so->mop_id         = $mop_id;
-    	$so->save();
-
+        $so->order_number   = $newid;
+    	$so->save(); 
     	if(!$so || is_null($so)){
     		return response()->json([
     			'success'		=> 	false, 
@@ -98,7 +107,7 @@ class SaleOrderController extends Controller
     		$sod = new SaleOrderDetail;
     		$sod->transaction_number 		= 0;
     		$sod->reference_number 	        = 0;
-    		$sod->order_number 		        = $so->order_number;
+    		$sod->order_number 		        = $newid;
     		$sod->line_number 		        = $soi['counter'];
     		$sod->reference_date 		    = $clarion;
     		$sod->product_code 		        = $soi['product_id'];

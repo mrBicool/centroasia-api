@@ -91,11 +91,11 @@ class CartController extends Controller
         //dd($user->USERNAME);
     	$my_carts = Cart::findByUser($user->account_code); 
         //dd($my_carts); 
-
     	$c = array();
     	$total_amount = 0;
     	foreach($my_carts as $cart){
-    		$part = Product::findById($cart->product_id);
+			$part = Product::findById($cart->product_id);
+			
             $amount = $cart->qty * ($part->unit_price + $user->sc) ;
     		$total_amount +=  $amount;
     		$data = [
@@ -108,8 +108,7 @@ class CartController extends Controller
     		];
     		array_push($c , $data);
     	}  
-
-
+ 
     	$data = [
     		'total_amount' 	=> $total_amount,
     		'items' 		=> $c
