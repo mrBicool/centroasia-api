@@ -42,7 +42,7 @@ class ProductController extends Controller
                     'last'              =>  $total_master_page,
                     'current_page'      =>  $request->current_page,
                     'base_url'          =>  url("/"),
-                    'default_img'       =>  '/storage/products/default.png',
+                    'default_img'       =>  '/assets/default.png',
                     'surcharge'         =>  $user->sc,
                     'data'              =>  $result_products
             ],200); 
