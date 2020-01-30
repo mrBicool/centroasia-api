@@ -61,6 +61,7 @@ Route::post('/mode_of_payment/index', 'MopController@index')->middleware('token_
 /*----------  EMAIL SENDING  ----------*/ 
 Route::post('/mail/franchise_inquiry','MailController@franchiseInquiry');
 Route::post('/mail/contact_inquiry','MailController@contactInquiry');
+Route::post('/contact-us', 	'ContactUsController@store');
 
 
 /*----------  FOR CLARION  ----------*/
